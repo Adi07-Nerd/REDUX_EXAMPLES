@@ -1,0 +1,11 @@
+<div class="container-fluid " *ngIf="false"> 
+  <div class="row mt-3" *ngFor="let data of currentState.products ;let i = index">
+    <div class="col-8">
+      <p class="lead text-center">{{ i+1 }} | {{ data.name }} {{ data.price }}</p>
+    </div>
+    <div class="col-4">
+      <button type="button" (click)="addToCart(i)" [ngClass]="{'btn-primary': !data.addedToCart,'btn-danger': data.addedToCart }" class="btn">{{ data.addedToCart ? 'Remove From The Cart' : 'Add Into The Cart.'}} </button>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
