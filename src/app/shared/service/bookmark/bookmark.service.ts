@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface Bookmark {
   id:number,
@@ -12,9 +14,25 @@ export interface Bookmark {
 })
 export class BookmarkService {
 
-  constructor(private httpService:) { }
+  allBookmarks?:Bookmark[];
+  editBookmark?:Bookmark;
+  filterText?:string;
 
-  public getAll(){
+  constructor(private http:HttpClient) { }
 
+  public getAll(): Observable<Bookmark[]>{
+    return this.http.get<Bookmark[]>('api/bookmarks');
+  }
+
+  public getById(bookmarkId:string):Observable<Bookmark>{
+    return this.http.get<Bookmark>(`api/bookmarks/${bookmarkId}`)
+  }
+
+  public save(bookmark:Bookmark):Observable<any>{
+    return this.http.post('api/bookmarks',bookmark);
+  }
+
+  public update(bookmark:Bookmark):Observable<any>{
+    return this.http.put('api/bookmarks',bookmark);
   }
 }
