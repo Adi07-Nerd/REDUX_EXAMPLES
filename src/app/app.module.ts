@@ -17,11 +17,13 @@ import { SecondChapterModule } from './second-chapter/second-chapter.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './shared/service/in-memory-data/in-memory-data.service';
+import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    OneChapterComponent
+    OneChapterComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
