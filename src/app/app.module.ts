@@ -18,12 +18,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './shared/service/in-memory-data/in-memory-data.service';
 import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
+import { FuzzyPipe } from './shared/pipes/fuzzy.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     OneChapterComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    FuzzyPipe
   ],
   imports: [
     BrowserModule,
