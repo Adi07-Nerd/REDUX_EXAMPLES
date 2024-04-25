@@ -1,0 +1,35 @@
+<mat-list *ngIf="bookmarkService.filterText; else groupedBookmarks">
+    <h3 mat-subheader>Results for "<em>{{bookmarkService.filterText}}</em>"</h3>
+    <mat-list-item *ngFor="let allBookmark of allBookmarks | fuzzy: bookmarkService.filterText">
+      <mat-icon mat-list-icon>bookmark</mat-icon>
+      <h4 mat-line>{{allBookmark.name}}</h4>
+      <a [href]="allBookmark.url" mat-line> {{allBookmark.url}}</a>
+      <a [routerLink]="['/edit', allBookmark.id]"><mat-icon mat-list-icon>edit</mat-icon></a>
+    </mat-list-item>
+  </mat-list>
+  
+  <ng-template #groupedBookmarks>
+    <mat-list>
+      <h3 mat-subheader>Today</h3>
+      <mat-list-item *ngFor="let todaysBookmark of todaysBookmarks">
+        <mat-icon mat-list-icon>bookmark</mat-icon>
+        <h4 mat-line>{{todaysBookmark.name}}</h4>
+        <a [href]="todaysBookmark.url" mat-line> {{todaysBookmark.url}}</a>
+        <a [routerLink]="['/edit', todaysBookmark.id]"><mat-icon mat-list-icon>edit</mat-icon></a>
+      </mat-list-item>
+      <h3 mat-subheader>Yesterday</h3>
+      <mat-list-item *ngFor="let yesterdaysBookmark of yesterdaysBookmarks">
+        <mat-icon mat-list-icon>bookmark</mat-icon>
+        <h4 mat-line>{{yesterdaysBookmark.name}}</h4>
+        <a [href]="yesterdaysBookmark.url" mat-line> {{yesterdaysBookmark.url}}</a>
+        <a [routerLink]="['/edit', yesterdaysBookmark.id]"><mat-icon mat-list-icon>edit</mat-icon></a>
+      </mat-list-item>
+      <h3 mat-subheader>Older</h3>
+      <mat-list-item *ngFor="let olderBookmark of olderBookmarks">
+        <mat-icon mat-list-icon>bookmark</mat-icon>
+        <h4 mat-line>{{olderBookmark.name}}</h4>
+        <a [href]="olderBookmark.url" mat-line> {{olderBookmark.url}}</a>
+        <a [routerLink]="['/edit', olderBookmark.id]"><mat-icon mat-list-icon>edit</mat-icon></a>
+      </mat-list-item>
+    </mat-list>
+  </ng-template>
