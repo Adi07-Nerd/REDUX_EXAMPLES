@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     ListRoutingModule,
     MatIconModule,
     MatListModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class ListModule { }
