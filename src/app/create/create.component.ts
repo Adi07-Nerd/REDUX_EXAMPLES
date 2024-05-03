@@ -24,6 +24,14 @@ export class CreateComponent implements OnInit,OnDestroy{
 
   }
 
+  get name(){
+    return this.bookmarkForm.get('name')
+  }
+
+  get url(){
+    return this.bookmarkForm.get('url')
+  }
+
   ngOnInit(): void {
   }
 

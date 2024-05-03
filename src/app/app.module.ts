@@ -25,7 +25,6 @@ import { FuzzyPipe } from './shared/pipes/fuzzy.pipe';
     AppComponent,
     OneChapterComponent,
     ErrorDialogComponent,
-    FuzzyPipe
   ],
   imports: [
     BrowserModule,

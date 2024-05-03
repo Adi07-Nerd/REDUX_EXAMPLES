@@ -6,20 +6,23 @@ import { ListComponent } from './list.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
+import { FuzzyPipe } from '../shared/pipes/fuzzy.pipe';
 
 
 
 
 @NgModule({
   declarations: [
-    ListComponent
+    ListComponent,
+    FuzzyPipe
   ],
   imports: [
     CommonModule,
     ListRoutingModule,
     MatIconModule,
     MatListModule,
-    FormsModule,
-  ]
+    FormsModule   
+  ],
+  providers:[]
 })
 export class ListModule { }

@@ -1,0 +1,26 @@
+<form [formGroup]="bookmarkForm" (ngSubmit)="onSubmit()">
+    <mat-accordion class="edit-bookmark-container">
+        <mat-expansion-panel [expanded]="true" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Edit Existing Bookmark
+                </mat-panel-title>
+                <mat-panel-description>
+                    Type bookmark name and url
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-form-field>
+                <input type="text" matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input type="text" matInput placeholder="Url" formControlName="url">
+            </mat-form-field>
+
+            <mat-action-row>
+                <button mat-raised-button color="primary" [disabled]="!bookmarkForm.valid" type="submit"> Update Bookmark </button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </mat-accordion>
+</form>

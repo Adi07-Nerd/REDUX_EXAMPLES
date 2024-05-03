@@ -9,6 +9,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CreateRoutingModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatInputModule,
     MatExpansionModule,
     MatIconModule,
     MatButtonModule,

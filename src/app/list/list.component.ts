@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Bookmark } from '../shared/service/bookmark/bookmark.service';
 import { isToday, isYesterday } from '../shared/util.service';
+import { FuzzyPipe } from '../shared/pipes/fuzzy.pipe';
 
 @Component({
   selector: 'app-list',
@@ -8,11 +9,12 @@ import { isToday, isYesterday } from '../shared/util.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit{
-  allBookmarks: any;
+  allBookmarks: Bookmark[];
   bookmarkService: any;
   todaysBookmarks: any;
   yesterdaysBookmarks: any;
   olderBookmarks: any;
+  constructor(){ }
 
   ngOnInit() {
     this.allBookmarks = this.bookmarkService.allBookmarks;
