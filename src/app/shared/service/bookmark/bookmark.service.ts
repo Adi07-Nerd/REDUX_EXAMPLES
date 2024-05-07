@@ -29,6 +29,7 @@ export class BookmarkService {
   }
 
   public save(bookmark:Bookmark):Observable<any>{
+    // this.allBookmarks?.push(bookmark);
     return this.http.post('api/bookmarks',bookmark);
   }
 

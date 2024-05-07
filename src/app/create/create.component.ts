@@ -41,6 +41,7 @@ export class CreateComponent implements OnInit,OnDestroy{
 
   onSubmit(){
     this.bookmarkCreate$ = this.bookmarkService.save({...this.bookmarkForm.value,created:moment().toDate}).subscribe((res) => {
+      this.bookmarkService.allBookmarks?.push(res)
       this.router.navigate(['/list']);
     },(err) => {
       console.log(err);
