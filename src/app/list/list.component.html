@@ -12,10 +12,10 @@
     <mat-list>
       <h3 mat-subheader>Today</h3>
       <mat-list-item *ngFor="let todaysBookmark of todaysBookmarks">
-        <mat-icon mat-list-icon>bookmark</mat-icon>
-        <h4 mat-line>{{todaysBookmark.name}}</h4>
-        <a [href]="todaysBookmark.url" mat-line> {{todaysBookmark.url}}</a>
-        <a [routerLink]="['/edit', todaysBookmark.id]"><mat-icon mat-list-icon>edit</mat-icon></a>
+        <mat-icon matListItemIcon>bookmark</mat-icon>
+        <h4 matListItemTitle>{{todaysBookmark.name}}</h4>
+        <a [href]="todaysBookmark.url"  matListItemLine> {{todaysBookmark.url}}</a>
+        <a [routerLink]="['/edit', todaysBookmark.id]" matListItemLine><mat-icon matListItemIcon>edit</mat-icon></a>
       </mat-list-item>
       <h3 mat-subheader>Yesterday</h3>
       <mat-list-item *ngFor="let yesterdaysBookmark of yesterdaysBookmarks">

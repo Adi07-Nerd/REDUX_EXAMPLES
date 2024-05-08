@@ -21,7 +21,6 @@ import { FuzzyPipe } from '../shared/pipes/fuzzy.pipe';
     ListRoutingModule,
     MatIconModule,
     MatListModule,
-    FormsModule   
   ],
   providers:[]
 })

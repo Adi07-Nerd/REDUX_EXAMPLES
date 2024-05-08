@@ -16,7 +16,7 @@ export class ListGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return this.bookService.getAll().pipe(first(),
-      map((bookmarks:Bookmark[]) => this.bookService.allBookmarks == bookmarks),
+      map((bookmarks:Bookmark[]) => this.bookService.allBookmarks = bookmarks),
       switchMap(() => this.activateRoute()),
       catchError(() => { 
         this.dialog.open(ErrorDialogComponent,
