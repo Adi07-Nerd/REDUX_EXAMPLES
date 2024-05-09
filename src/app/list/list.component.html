@@ -15,21 +15,21 @@
         <mat-icon matListItemIcon>bookmark</mat-icon>
         <h4 matListItemTitle>{{todaysBookmark.name}}</h4>
         <a [href]="todaysBookmark.url"  matListItemLine> {{todaysBookmark.url}}</a>
-        <a [routerLink]="['/edit', todaysBookmark.id]" matListItemLine><mat-icon matListItemIcon>edit</mat-icon></a>
+        <a [routerLink]="['/edit', todaysBookmark.id]" matListItemMeta><mat-icon>edit</mat-icon></a>
       </mat-list-item>
       <h3 mat-subheader>Yesterday</h3>
       <mat-list-item *ngFor="let yesterdaysBookmark of yesterdaysBookmarks">
-        <mat-icon mat-list-icon>bookmark</mat-icon>
-        <h4 mat-line>{{yesterdaysBookmark.name}}</h4>
-        <a [href]="yesterdaysBookmark.url" mat-line> {{yesterdaysBookmark.url}}</a>
-        <a [routerLink]="['/edit', yesterdaysBookmark.id]"><mat-icon mat-list-icon>edit</mat-icon></a>
+        <mat-icon matListItemIcon>bookmark</mat-icon>
+        <h4 matListItemTitle>{{yesterdaysBookmark.name}}</h4>
+        <a [href]="yesterdaysBookmark.url" matListItemLine> {{yesterdaysBookmark.url}}</a>
+        <a [routerLink]="['/edit', yesterdaysBookmark.id]" matListItemMeta><mat-icon>edit</mat-icon></a>
       </mat-list-item>
       <h3 mat-subheader>Older</h3>
       <mat-list-item *ngFor="let olderBookmark of olderBookmarks">
-        <mat-icon mat-list-icon>bookmark</mat-icon>
-        <h4 mat-line>{{olderBookmark.name}}</h4>
-        <a [href]="olderBookmark.url" mat-line> {{olderBookmark.url}}</a>
-        <a [routerLink]="['/edit', olderBookmark.id]"><mat-icon mat-list-icon>edit</mat-icon></a>
+        <mat-icon matListItemIcon>bookmark</mat-icon>
+        <h4 matListItemTitle>{{olderBookmark.name}}</h4>
+        <a [href]="olderBookmark.url" matListItemLine> {{olderBookmark.url}}</a>
+        <a [routerLink]="['/edit', olderBookmark.id]" [queryParams]="{name: olderBookmark.name,url: olderBookmark.url}"  matListItemMeta><mat-icon>edit</mat-icon></a>
       </mat-list-item>
     </mat-list>
   </ng-template>
