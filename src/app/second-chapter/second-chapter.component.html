@@ -2,9 +2,9 @@
     <mat-toolbar-row>
         <span [routerLink]="['/list']" class="example-header">Bookmarker</span>
         <span class="example-spacer"></span>
-        <mat-form-field class="example-full-width align-content-center"  [color]="'primary'">
+        <mat-form-field subscriptSizing="dynamic" class="example-full-width align-content-center"  [color]="'primary'">
             <mat-icon class="dark-color" matPrefix>search</mat-icon>
-            <input  type="tel" matInput  placeholder="Filter bookmarks...">
+            <input  type="tel" matInput placeholder="Filter bookmarks...">
         </mat-form-field>
         <span class="example-spacer"></span>
         <mat-icon [routerLink]="['/create']" class="example-icon" matToolTip="Create a new bookmark">add</mat-icon>

@@ -5,9 +5,6 @@ import { SecondChapterComponent } from './second-chapter/second-chapter.componen
 const routes: Routes = [
   { path:'',redirectTo:'home',pathMatch:'full' },
   { path:'home',loadChildren : () => import('./second-chapter/second-chapter.module').then( m => m.SecondChapterModule)},
-  { path: 'create', loadChildren: () => import('./create/create.module').then(m => m.CreateModule) },
-  { path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListModule) },
-  { path: 'edit/:bookmarkId', loadChildren: () => import('./edit/edit.module').then(m => m.EditModule) }
 ];
 
 @NgModule({

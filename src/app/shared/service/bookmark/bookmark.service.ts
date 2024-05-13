@@ -25,7 +25,7 @@ export class BookmarkService {
   }
 
   public getById(bookmarkId:string):Observable<Bookmark>{
-    return this.http.get<Bookmark>(`api/bookmarks/${bookmarkId}`)
+    return this.http.get<Bookmark>(`api/bookmarks/${bookmarkId}`);
   }
 
   public save(bookmark:Bookmark):Observable<any>{

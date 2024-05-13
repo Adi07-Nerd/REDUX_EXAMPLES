@@ -19,6 +19,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './shared/service/in-memory-data/in-memory-data.service';
 import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
 import { FuzzyPipe } from './shared/pipes/fuzzy.pipe';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FuzzyPipe } from './shared/pipes/fuzzy.pipe';
     MatToolbarModule,
     MatIconModule,
     MatTooltipModule,
+    MatButtonModule,
     MatDialogModule,
     MatInputModule,
     SecondChapterModule,
