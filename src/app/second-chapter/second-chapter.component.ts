@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { BookmarkService } from '../shared/service/bookmark/bookmark.service';
 
 @Component({
   selector: 'app-second-chapter',
@@ -8,5 +9,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 
 export class SecondChapterComponent {
+  constructor(public bookmarkService:BookmarkService){ }
 
 }

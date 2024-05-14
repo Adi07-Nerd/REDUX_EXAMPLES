@@ -1,5 +1,5 @@
 <mat-list *ngIf="bookmarkService.filterText; else groupedBookmarks">
-    <h3 mat-subheader>Results for "<em>{{bookmarkService.filterText}}</em>"</h3>
+    <h3 mat-subheader>Results for " <em>{{bookmarkService.filterText}}</em> "</h3>
     <mat-list-item *ngFor="let allBookmark of allBookmarks | fuzzy: bookmarkService.filterText">
       <mat-icon mat-list-icon>bookmark</mat-icon>
       <h4 mat-line>{{allBookmark.name}}</h4>
