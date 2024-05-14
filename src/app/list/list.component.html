@@ -1,10 +1,11 @@
 <mat-list *ngIf="bookmarkService.filterText; else groupedBookmarks">
     <h3 mat-subheader>Results for " <em>{{bookmarkService.filterText}}</em> "</h3>
     <mat-list-item *ngFor="let allBookmark of allBookmarks | fuzzy: bookmarkService.filterText">
-      <mat-icon mat-list-icon>bookmark</mat-icon>
-      <h4 mat-line>{{allBookmark.name}}</h4>
-      <a [href]="allBookmark.url" mat-line> {{allBookmark.url}}</a>
-      <a [routerLink]="['/edit', allBookmark.id]"><mat-icon mat-list-icon>edit</mat-icon></a>
+      <mat-icon matListItemIcon>bookmark</mat-icon>
+      <h4 matListItemTitle>{{allBookmark.name}}</h4>
+      <p matListItemLine> <a [href]="allBookmark.url"> {{allBookmark.url}}</a></p>
+      <em style="text-decoration: underline;font-weight:bold;" matListItemMeta> {{ allBookmark.created | date }}</em> 
+      <a [routerLink]="['/edit', allBookmark.id]" matListItemMeta><mat-icon>edit</mat-icon></a>
     </mat-list-item>
   </mat-list>
   

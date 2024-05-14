@@ -15,7 +15,7 @@ export class FuzzyPipe implements PipeTransform {
   transform(bookmarks: Bookmark[], ...args: string[]):Bookmark[] {
     const filterTerm:string[] = args.map( e => e.toLowerCase()); 
     return ( filterTerm ? 
-      ( bookmarks.filter((b:Bookmark) => b.name.toLocaleLowerCase().includes(filterTerm.toString()))) 
+      ( bookmarks.filter((b:Bookmark) => b.name.toLocaleLowerCase().match(new RegExp(filterTerm.toString(),'gi')) != null)) 
       : bookmarks);
   }
 
