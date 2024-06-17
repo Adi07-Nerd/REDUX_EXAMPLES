@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OneChapterComponent } from './one-chapter/one-chapter.component';
-import { MyStore } from './store';
+import { MyStore, reducers, metaReducers } from './store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -20,6 +20,8 @@ import { InMemoryDataService } from './shared/service/in-memory-data/in-memory-d
 import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
 import { FuzzyPipe } from './shared/pipes/fuzzy.pipe';
 import { MatButtonModule } from '@angular/material/button';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { MatButtonModule } from '@angular/material/button';
     put204: false // return entity after PUT/update
     }
     ),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    isDevMode() ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [MyStore],
   bootstrap: [AppComponent]
