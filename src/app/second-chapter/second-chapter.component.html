@@ -4,8 +4,9 @@
         <span class="example-spacer"></span>
         <mat-form-field subscriptSizing="dynamic" class="example-full-width align-content-center"  [color]="'primary'">
             <mat-icon class="dark-color" matPrefix>search</mat-icon>
-            <input  type="tel"  [(ngModel)]="bookmarkService.filterText" matInput placeholder="Filter bookmarks...">
+            <input  type="tel" (input)="onFilterChange($event)" matInput placeholder="Filter bookmarks...">
         </mat-form-field>
+        <!-- [(ngModel)]="bookmarkService.filterText"  -->
         <span class="example-spacer"></span>
         <mat-icon [routerLink]="['/create']" class="example-icon" matToolTip="Create a new bookmark">add</mat-icon>
     </mat-toolbar-row>

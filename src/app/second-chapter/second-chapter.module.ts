@@ -7,10 +7,14 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
     declarations: [ SecondChapterComponent],
     imports:[ 
+        RouterModule,
+        CommonModule,
         SecondChapterRouting ,
         FormsModule,
         MatToolbarModule,

@@ -16,4 +16,4 @@ export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
 };
 
 
-export const metaReducers: MetaReducer<AppState>[] = isDevMode() ? [] : [];
+export const metaReducers: MetaReducer<AppState>[] = [];

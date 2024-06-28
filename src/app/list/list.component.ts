@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Bookmark, BookmarkService } from '../shared/service/bookmark/bookmark.service';
 import { isToday, isYesterday } from '../shared/util.service';
-import { FuzzyPipe } from '../shared/pipes/fuzzy.pipe';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { getFilterText } from '../store/toolbar/toolbar.selectors';
+import { AppState } from '../store/index';
 
 @Component({
   selector: 'app-list',
@@ -13,7 +16,8 @@ export class ListComponent implements OnInit{
   public todaysBookmarks: any;
   public yesterdaysBookmarks: any;
   public olderBookmarks: any;
-  constructor(public readonly bookmarkService: BookmarkService){ }
+  public filterText$:Observable<string>;
+  constructor(public readonly bookmarkService: BookmarkService,public readonly store$:Store<AppState>){ }
 
   ngOnInit() {
     this.allBookmarks = <Bookmark[]>this.bookmarkService.allBookmarks;
@@ -23,5 +27,7 @@ export class ListComponent implements OnInit{
       return !this.todaysBookmarks.find((b:Bookmark) => b.id === bookmark.id) &&
              !this.yesterdaysBookmarks.find((b:Bookmark) => b.id === bookmark.id);
     });
+
+    this.filterText$ = this.store$.select(getFilterText);
   }
 }
