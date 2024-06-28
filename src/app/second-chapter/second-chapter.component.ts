@@ -14,8 +14,8 @@ import { AppState } from '../store/index';
 export class SecondChapterComponent {
   constructor(public bookmarkService:BookmarkService,public readonly $store:Store<AppState>){ }
 
-  onFilterChange(value:any){
-    this.$store.dispatch(FILTER_BOOKMARKS.filterBookmarks({filterText:value}));
+  onFilterChange(eventTarget: Event){
+    this.$store.dispatch(FILTER_BOOKMARKS.filterBookmarks({filterText:(<HTMLInputElement>eventTarget.target).value}));
   }
 
 }
