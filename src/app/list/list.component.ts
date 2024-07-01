@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Bookmark, BookmarkService } from '../shared/service/bookmark/bookmark.service';
 import { isToday, isYesterday } from '../shared/util.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { getFilterText } from '../store/toolbar/toolbar.selectors';
 import { AppState } from '../store/index';

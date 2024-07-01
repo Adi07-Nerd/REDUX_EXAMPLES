@@ -11,7 +11,7 @@ export const initialState: FilterState = {
 
 /**
  * _ refers to current state
- * filterText given by the action
+ * filterText given by the action (The key which you provide in prop will be used in {filterText})
  */
 export const toolbarReducer = createReducer(
   initialState,
