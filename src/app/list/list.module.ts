@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import { FuzzyPipe } from '../shared/pipes/fuzzy.pipe';
+import { StoreModule } from '@ngrx/store';
+import * as fromBookmarks from '../store/bookmark';
 
 
 
@@ -21,6 +23,7 @@ import { FuzzyPipe } from '../shared/pipes/fuzzy.pipe';
     ListRoutingModule,
     MatIconModule,
     MatListModule,
+    StoreModule.forFeature(fromBookmarks.bookmarksFeatureKey, fromBookmarks.reducers, { metaReducers: fromBookmarks.metaReducers }),
   ],
   providers:[]
 })
