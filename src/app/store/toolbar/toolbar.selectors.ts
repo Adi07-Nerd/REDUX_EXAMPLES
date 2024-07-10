@@ -1,4 +1,4 @@
-import { createSelector } from "@ngrx/store";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { AppState } from "..";
 import { FilterState } from "./toolbar.reducer";
 

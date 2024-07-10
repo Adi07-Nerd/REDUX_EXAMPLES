@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { Bookmark } from '../../shared/service/bookmark/bookmark.service';
 import { BookmarkActions } from './bookmark.actions';
 
-export const bookmarkFeatureKey = 'bookmark';
+export const bookmarkFeatureKey = 'bookmarks';
 
 export const initialAllBookmarkState:Bookmark[] = []
 
