@@ -1,6 +1,6 @@
 <mat-list *ngIf="filterText$ | async as filterText; else groupedBookmarks">
     <h3 mat-subheader>Results for " <em>{{filterText}}</em> "</h3>
-    <mat-list-item *ngFor="let allBookmark of allBookmarks | fuzzy: filterText">
+    <mat-list-item *ngFor="let allBookmark of allBookmarks$ | async | fuzzy: filterText">
       <mat-icon matListItemIcon>bookmark</mat-icon>
       <h4 matListItemTitle>{{allBookmark.name}}</h4>
       <p matListItemLine> <a [href]="allBookmark.url"> {{allBookmark.url}}</a></p>
@@ -12,21 +12,21 @@
   <ng-template #groupedBookmarks>
     <mat-list>
       <h3 mat-subheader>Today</h3>
-      <mat-list-item *ngFor="let todaysBookmark of todaysBookmarks">
+      <mat-list-item *ngFor="let todaysBookmark of todaysBookmarks$ | async">
         <mat-icon matListItemIcon>bookmark</mat-icon>
-        <h4 matListItemTitle>{{todaysBookmark.name}}</h4>
+        <h4 matListItemTitle>{{todaysBookmark.name}} {{ todaysBookmark.id }}</h4>
         <a [href]="todaysBookmark.url"  matListItemLine> {{todaysBookmark.url}}</a>
         <a [routerLink]="['/edit', todaysBookmark.id]" matListItemMeta><mat-icon>edit</mat-icon></a>
       </mat-list-item>
       <h3 mat-subheader>Yesterday</h3>
-      <mat-list-item *ngFor="let yesterdaysBookmark of yesterdaysBookmarks">
+      <mat-list-item *ngFor="let yesterdaysBookmark of yesterdaysBookmarks$ | async">
         <mat-icon matListItemIcon>bookmark</mat-icon>
         <h4 matListItemTitle>{{yesterdaysBookmark.name}}</h4>
         <a [href]="yesterdaysBookmark.url" matListItemLine> {{yesterdaysBookmark.url}}</a>
         <a [routerLink]="['/edit', yesterdaysBookmark.id]" matListItemMeta><mat-icon>edit</mat-icon></a>
       </mat-list-item>
       <h3 mat-subheader>Older</h3>
-      <mat-list-item *ngFor="let olderBookmark of olderBookmarks">
+      <mat-list-item *ngFor="let olderBookmark of olderBookmarks$ | async">
         <mat-icon matListItemIcon>bookmark</mat-icon>
         <h4 matListItemTitle>{{olderBookmark.name}}</h4>
         <a [href]="olderBookmark.url" matListItemLine> {{olderBookmark.url}}</a>

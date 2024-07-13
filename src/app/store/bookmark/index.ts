@@ -10,12 +10,12 @@ import * as fromBookmark from './bookmark.reducer'
 export const bookmarksFeatureKey = 'bookmarks';
 
 export interface BookmarkState {
-  all: Bookmark[],
-  edit:Bookmark
+  all: Bookmark[] | undefined,
+  edit:Bookmark | undefined
 }
 
 export const reducers: ActionReducerMap<BookmarkState> = {
-  all: fromBookmark.allBookmarkReducer,
+  all : fromBookmark.allBookmarkReducer,
   edit: fromBookmark.editBookmarkReducer
 };
 

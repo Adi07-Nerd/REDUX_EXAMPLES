@@ -8,7 +8,7 @@ import { Bookmark } from '../../shared/service/bookmark/bookmark.service';
 export const BookmarkActions = createActionGroup({
   source: 'Bookmark',
   events: {
-    'Bookmark Load All Bookmarks': props<{bookmarks:Bookmark[]}>(),
-    'Bookmark Edit Bookmarks': props<{bookmark:Bookmark}>(),
+    'Bookmark Load All Bookmarks': props<{bookmarks:Bookmark[] | undefined}>(),
+    'Bookmark Edit Bookmarks': props<{bookmark:Bookmark | undefined}>(),
   },
 });

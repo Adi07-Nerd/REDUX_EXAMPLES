@@ -4,25 +4,29 @@ import { BookmarkActions } from './bookmark.actions';
 
 export const bookmarkFeatureKey = 'bookmarks';
 
-export const initialAllBookmarkState:Bookmark[] = []
 
-export const initialEditBookmarkState:Bookmark = {
+export const initialEditBookmarkState:Bookmark | undefined = undefined
+/**
+ * {
   id: 0,
   name: '',
   url: '',
   created: new Date()
 }
+ */
+
+export const initialAllBookmarkState:Bookmark[] | undefined = [ ]
 
 /**
  * _ refers to current state
  * filterText given by the action (The key which you provide in prop will be used in {filterText})
  */
-export const allBookmarkReducer = createReducer(
+export const allBookmarkReducer = createReducer<Bookmark[] | undefined>(
   initialAllBookmarkState,
   on(BookmarkActions.bookmarkLoadAllBookmarks,(_,{bookmarks}) => bookmarks),
 );
 
-export const editBookmarkReducer = createReducer(
+export const editBookmarkReducer = createReducer<Bookmark | undefined>(
   initialEditBookmarkState,
   on(BookmarkActions.bookmarkEditBookmarks,(_,{ bookmark }) => bookmark)
 );
