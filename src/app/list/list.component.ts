@@ -22,7 +22,14 @@ export class ListComponent implements OnInit{
   public yesterdaysBookmarks$: Observable<Bookmark[] | undefined>;
   public olderBookmarks$: Observable<Bookmark[] | undefined>;
   public filterText$:Observable<string>;
-  constructor(public readonly bookmarkService: BookmarkService,public readonly store$:Store<AppState>){ }
+  constructor(public readonly bookmarkService: BookmarkService,public readonly store$:Store<AppState>){ 
+    //After usign store
+    this.allBookmarks$ = this.store$.select(getAllBookmarks);
+    this.todaysBookmarks$ = this.allBookmarks$.pipe(map((bookmarks:Bookmark[] | undefined) => bookmarks?.filter((bookmark:Bookmark) => isToday(bookmark.created))));
+    this.yesterdaysBookmarks$ = this.allBookmarks$.pipe(map((bookmarks:Bookmark[] | undefined) => bookmarks?.filter((bookmark:Bookmark) => isYesterday(bookmark.created))));
+    this.olderBookmarks$ = this.allBookmarks$.pipe(map((bookmarks:Bookmark[] | undefined) => bookmarks?.filter((bookmark:Bookmark) => !isToday(bookmark.created) && !isYesterday(bookmark.created))));
+    this.filterText$ = this.store$.select(getFilterText);
+  }
 
   ngOnInit() {
     //Before using store
@@ -33,12 +40,5 @@ export class ListComponent implements OnInit{
     //   return !this.todaysBookmarks.find((b:Bookmark) => b.id === bookmark.id) &&
     //          !this.yesterdaysBookmarks.find((b:Bookmark) => b.id === bookmark.id);
     // });
-
-    //After usign store
-    this.allBookmarks$ = this.store$.select(getAllBookmarks);
-    this.todaysBookmarks$ = this.allBookmarks$.pipe(map((bookmarks:Bookmark[] | undefined) => bookmarks?.filter((bookmark:Bookmark) => isToday(bookmark.created))));
-    this.yesterdaysBookmarks$ = this.allBookmarks$.pipe(map((bookmarks:Bookmark[] | undefined) => bookmarks?.filter((bookmark:Bookmark) => isYesterday(bookmark.created))));
-    this.olderBookmarks$ = this.allBookmarks$.pipe(map((bookmarks:Bookmark[] | undefined) => bookmarks?.filter((bookmark:Bookmark) => !isToday(bookmark.created) && !isYesterday(bookmark.created))));
-    this.filterText$ = this.store$.select(getFilterText);
   }
 }

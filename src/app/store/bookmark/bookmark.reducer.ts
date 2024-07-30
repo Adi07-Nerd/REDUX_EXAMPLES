@@ -6,6 +6,8 @@ export const bookmarkFeatureKey = 'bookmarks';
 
 
 export const initialEditBookmarkState:Bookmark | undefined = undefined
+
+export const initialCreateBookmarkState:Bookmark | undefined = undefined
 /**
  * {
   id: 0,
@@ -29,5 +31,10 @@ export const allBookmarkReducer = createReducer<Bookmark[] | undefined>(
 export const editBookmarkReducer = createReducer<Bookmark | undefined>(
   initialEditBookmarkState,
   on(BookmarkActions.bookmarkEditBookmarks,(_,{ bookmark }) => bookmark)
+);
+
+export const saveBookmarkReducer = createReducer<Bookmark | undefined>(
+  initialCreateBookmarkState,
+  on(BookmarkActions.bookmarkSaveBookmark,(_,{ bookmark }) => bookmark)
 );
 

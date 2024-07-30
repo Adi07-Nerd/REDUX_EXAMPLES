@@ -14,7 +14,7 @@
       <h3 mat-subheader>Today</h3>
       <mat-list-item *ngFor="let todaysBookmark of todaysBookmarks$ | async">
         <mat-icon matListItemIcon>bookmark</mat-icon>
-        <h4 matListItemTitle>{{todaysBookmark.name}} {{ todaysBookmark.id }}</h4>
+        <h4 matListItemTitle>{{todaysBookmark.name}}</h4>
         <a [href]="todaysBookmark.url"  matListItemLine> {{todaysBookmark.url}}</a>
         <a [routerLink]="['/edit', todaysBookmark.id]" matListItemMeta><mat-icon>edit</mat-icon></a>
       </mat-list-item>

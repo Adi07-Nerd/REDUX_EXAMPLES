@@ -9,6 +9,8 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
+import { EffectsModule } from "@ngrx/effects";
+import { BookmarkEffects } from "../store/bookmark/bookmark.effects";
 
 @NgModule({
     declarations: [ SecondChapterComponent],
@@ -23,6 +25,7 @@ import { RouterModule } from "@angular/router";
         MatTooltipModule,
         MatDialogModule,
         MatInputModule,
+        EffectsModule.forFeature([BookmarkEffects])
     ]
 })
 export class SecondChapterModule {}

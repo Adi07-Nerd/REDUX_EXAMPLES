@@ -1,10 +1,14 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BookmarkService } from '../shared/service/bookmark/bookmark.service';
-import { Observable, Observer, Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Bookmark, BookmarkService } from '../shared/service/bookmark/bookmark.service';
+import {  Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../shared/components/error-dialog/error-dialog.component';
+import { Store } from '@ngrx/store';
+import { BookmarkState } from '../store/bookmark';
+import { getEditBookmark } from '../store/bookmark/bookmark.selector';
+import { BookmarkActions } from '../store/bookmark/bookmark.actions';
 
 @Component({
   selector: 'app-edit',
@@ -14,24 +18,36 @@ import { ErrorDialogComponent } from '../shared/components/error-dialog/error-di
 export class EditComponent implements OnDestroy{
   public bookmarkForm:FormGroup;
   public bookmarkUpdate$:Subscription;
-
-  constructor(private fb:FormBuilder,private bookmarkService:BookmarkService,private router:Router,private dailog:MatDialog){
-    this.bookmarkForm = this.fb.group({
-      name:[this.bookmarkService.editBookmark?.name,Validators.required],
-      url:[this.bookmarkService.editBookmark?.url,Validators.required]
+  private editBookmark:Bookmark | undefined;
+  
+  constructor(private fb:FormBuilder,private bookmarkService:BookmarkService,private router:Router,private dailog:MatDialog,private store$:Store<BookmarkState>){
+    this.store$.select(getEditBookmark).subscribe( (bookmark:Bookmark | undefined) => {
+      this.editBookmark = bookmark 
+      this.bookmarkForm = this.fb.group({
+        name:[bookmark?.name,Validators.required],
+        url:[bookmark?.url,Validators.required]
+      })
     })
   }
 
   onSubmit(){
-    this.bookmarkUpdate$ = this.bookmarkService.update({
-      id:this.bookmarkService.editBookmark?.id,
-      ...this.bookmarkForm.value,
-    }).subscribe(() => { this.router.navigate(['/list'])},
-     () => this.dailog.open(ErrorDialogComponent,{ 
-      width: '400px',
-      data: { errorMessage: 'Sorry, unable to update bookmark.'}
-     })
-    )
+    this.store$.dispatch(BookmarkActions.bookmarkSaveEditBookmark({bookmark:Object.assign({},this.editBookmark,this.bookmarkForm.value)}));
+    // this.router.navigate(['/list']);
+
+    // this.store$.select(getEditBookmark).subscribe( (bookmark:Bookmark | undefined) =>{
+    //   this.bookmarkUpdate$ = this.bookmarkService.update({
+    //     id:bookmark?.id,
+    //     ...this.bookmarkForm.value,
+    //   }).subscribe(() => { this.router.navigate(['/list'])},
+    //    (err) => {
+    //     console.log(err)
+    //     this.dailog.open(ErrorDialogComponent,{ 
+    //     width: '400px',
+    //     data: { errorMessage: 'Sorry, unable to update bookmark.'}
+    //    })
+    //   }
+    //   )
+    // })
   }
 
   ngOnDestroy(): void {

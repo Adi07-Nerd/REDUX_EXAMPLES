@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 export interface Bookmark {
   id:number,
@@ -30,6 +30,7 @@ export class BookmarkService {
 
   public save(bookmark:Bookmark):Observable<any>{
     // this.allBookmarks?.push(bookmark);
+    // return throwError(() => new Error('current'))
     return this.http.post('api/bookmarks',bookmark);
   }
 

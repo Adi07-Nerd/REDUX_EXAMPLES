@@ -4,18 +4,21 @@ import { Observable, catchError, first, map, of, switchMap } from 'rxjs';
 import { Bookmark, BookmarkService } from '../shared/service/bookmark/bookmark.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../shared/components/error-dialog/error-dialog.component';
+import { Store } from '@ngrx/store';
+import { BookmarkState } from '../store/bookmark';
+import { BookmarkActions } from '../store/bookmark/bookmark.actions'
 
 @Injectable({
   providedIn: 'root'
 })
 export class EditGuard implements CanActivate {
-  constructor(private bookmarkService:BookmarkService,private dailog:MatDialog){}
+  constructor(private bookmarkService:BookmarkService,private dailog:MatDialog,private store$:Store<BookmarkState>){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return this.bookmarkService.getById(route.params['bookmarkId']).pipe(
         first(),
-        map((bookmark:Bookmark) => this.bookmarkService.editBookmark = bookmark),
+        map((bookmark:Bookmark) => this.store$.dispatch(BookmarkActions.bookmarkEditBookmarks({bookmark}))),
         switchMap(() => this.activateRoute()),
         catchError((err:any) => {
           console.log(err);

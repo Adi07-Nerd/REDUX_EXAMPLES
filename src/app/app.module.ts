@@ -21,6 +21,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS, metaReducers } from './store/index';
+import * as bookmarkIndex from '../app/store/bookmark/index';
+import { EffectsModule } from '@ngrx/effects'
+import { BookmarkEffects } from './store/bookmark/bookmark.effects';
 
 
 @NgModule({
@@ -50,10 +53,14 @@ import { ROOT_REDUCERS, metaReducers } from './store/index';
     }
     ),
     StoreModule.forRoot(ROOT_REDUCERS,{metaReducers}),
+    // StoreModule.forFeature('bookmarks',bookmarkIndex.reducers),
+    StoreModule.forFeature(bookmarkIndex.bookmarksFeatureKey,bookmarkIndex.reducers),
     StoreDevtoolsModule.instrument({
       logOnly:true,
       trace:true
-    })
+    }),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([])
     // isDevMode() ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [MyStore],
