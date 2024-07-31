@@ -10,8 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-import { EffectsModule } from '@ngrx/effects';
-import { BookmarkEffects } from '../store/bookmark/bookmark.effects';
 
 
 @NgModule({

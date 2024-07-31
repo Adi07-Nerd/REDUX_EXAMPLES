@@ -22,8 +22,10 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS, metaReducers } from './store/index';
 import * as bookmarkIndex from '../app/store/bookmark/index';
-import { EffectsModule } from '@ngrx/effects'
-import { BookmarkEffects } from './store/bookmark/bookmark.effects';
+import { EffectsModule } from '@ngrx/effects';
+import { RouterEffects } from './store/router/router.effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomRouterSerializer } from './store/router/router.serializer';
 
 
 @NgModule({
@@ -59,8 +61,8 @@ import { BookmarkEffects } from './store/bookmark/bookmark.effects';
       logOnly:true,
       trace:true
     }),
-    EffectsModule.forRoot([]),
-    EffectsModule.forFeature([])
+    EffectsModule.forRoot([RouterEffects]),
+    StoreRouterConnectingModule.forRoot({serializer : CustomRouterSerializer}),
     // isDevMode() ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [MyStore],

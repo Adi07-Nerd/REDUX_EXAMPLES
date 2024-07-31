@@ -11,6 +11,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
 import { BookmarkEffects } from "../store/bookmark/bookmark.effects";
+import { RouterEffects } from '../store/router/router.effects';
 
 @NgModule({
     declarations: [ SecondChapterComponent],
@@ -25,7 +26,7 @@ import { BookmarkEffects } from "../store/bookmark/bookmark.effects";
         MatTooltipModule,
         MatDialogModule,
         MatInputModule,
-        EffectsModule.forFeature([BookmarkEffects])
+        EffectsModule.forFeature([BookmarkEffects]),
     ]
 })
 export class SecondChapterModule {}

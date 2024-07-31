@@ -6,6 +6,7 @@ import { Bookmark, BookmarkService } from 'src/app/shared/service/bookmark/bookm
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { RouterActions } from '../router/router.actions';
 
 
 @Injectable()
@@ -24,7 +25,7 @@ export class BookmarkEffects {
     ofType(BookmarkActions.bookmarkSaveBookmark),
     exhaustMap((action) => this.bookmarkService.save(
       {...action.bookmark}).pipe( 
-        map(() => BookmarkActions.bookmarkSave_successBookmark()),
+        map(() => RouterActions.routerRedirectToListRoute()),
         catchError((err) => of(BookmarkActions.bookmarkSave_errorBookmark({message:'Sorry Unable to create a bookmark.',error:err})))
       ))
   ),{useEffectsErrorHandler:false});
@@ -49,7 +50,7 @@ export class BookmarkEffects {
   public editBookmark$ = createEffect(() => this.actions$.pipe(
     ofType(BookmarkActions.bookmarkSaveEditBookmark),
     exhaustMap((action) => this.bookmarkService.update({...action.bookmark}).pipe(
-      map(() => BookmarkActions.bookmarkSave_successBookmark()),
+      map(() => RouterActions.routerRedirectToListRoute()),
       catchError((err) => of(BookmarkActions.bookmarkSave_errorBookmark({message:'Sorry Unable to Edit a Bookmark.',error:err})))
     ))
   ),{ useEffectsErrorHandler: false})

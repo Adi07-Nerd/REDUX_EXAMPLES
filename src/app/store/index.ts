@@ -1,4 +1,5 @@
 import { isDevMode } from '@angular/core';
+import * as fromRouterStore from '@ngrx/router-store';
 
 import {
   ActionReducerMap,
@@ -8,11 +9,13 @@ import {
 import * as fromToolbar from 'src/app/store/toolbar/toolbar.reducer';
 
 export interface AppState {
-  filter:fromToolbar.FilterState
+  filter: fromToolbar.FilterState,
+  router: fromRouterStore.RouterReducerState,
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
-  filter: fromToolbar.toolbarReducer
+  filter: fromToolbar.toolbarReducer,
+  router: fromRouterStore.routerReducer
 };
 
 
