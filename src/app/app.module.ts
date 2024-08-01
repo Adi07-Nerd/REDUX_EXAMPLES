@@ -62,6 +62,10 @@ import { CustomRouterSerializer } from './store/router/router.serializer';
       trace:true
     }),
     EffectsModule.forRoot([RouterEffects]),
+    /**
+     * stateKey is the second object if which take 'router' key for router state by default but
+     * if u have other name then router in your application state speicified it in the stateKey
+     */
     StoreRouterConnectingModule.forRoot({serializer : CustomRouterSerializer}),
     // isDevMode() ? StoreDevtoolsModule.instrument() : [],
   ],

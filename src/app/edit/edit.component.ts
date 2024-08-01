@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { BookmarkState } from '../store/bookmark';
 import { getEditBookmark } from '../store/bookmark/bookmark.selector';
 import { BookmarkActions } from '../store/bookmark/bookmark.actions';
+import { AppState } from '../store/index';
 
 @Component({
   selector: 'app-edit',
@@ -18,11 +19,9 @@ import { BookmarkActions } from '../store/bookmark/bookmark.actions';
 export class EditComponent implements OnDestroy{
   public bookmarkForm:FormGroup;
   public bookmarkUpdate$:Subscription;
-  private editBookmark:Bookmark | undefined;
   
-  constructor(private fb:FormBuilder,private bookmarkService:BookmarkService,private router:Router,private dailog:MatDialog,private store$:Store<BookmarkState>){
+  constructor(private fb:FormBuilder,private bookmarkService:BookmarkService,private router:Router,private dailog:MatDialog,private store$:Store<AppState>){
     this.store$.select(getEditBookmark).subscribe( (bookmark:Bookmark | undefined) => {
-      this.editBookmark = bookmark 
       this.bookmarkForm = this.fb.group({
         name:[bookmark?.name,Validators.required],
         url:[bookmark?.url,Validators.required]
@@ -31,7 +30,9 @@ export class EditComponent implements OnDestroy{
   }
 
   onSubmit(){
-    this.store$.dispatch(BookmarkActions.bookmarkSaveEditBookmark({bookmark:Object.assign({},this.editBookmark,this.bookmarkForm.value)}));
+    this.store$.select(getEditBookmark).subscribe( (bookmark:Bookmark | undefined) => {
+      this.store$.dispatch(BookmarkActions.bookmarkSaveEditBookmark({bookmark:Object.assign({},bookmark,this.bookmarkForm.value)}));
+    })
     // this.router.navigate(['/list']);
 
     // this.store$.select(getEditBookmark).subscribe( (bookmark:Bookmark | undefined) =>{
