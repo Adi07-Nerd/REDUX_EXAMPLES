@@ -11,7 +11,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
 import { BookmarkEffects } from "../store/bookmark/bookmark.effects";
-import { RouterEffects } from '../store/router/router.effects';
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
     declarations: [ SecondChapterComponent],
@@ -25,6 +25,7 @@ import { RouterEffects } from '../store/router/router.effects';
         MatIconModule,
         MatTooltipModule,
         MatDialogModule,
+        MatProgressSpinnerModule,
         MatInputModule,
         EffectsModule.forFeature([BookmarkEffects]),
     ]

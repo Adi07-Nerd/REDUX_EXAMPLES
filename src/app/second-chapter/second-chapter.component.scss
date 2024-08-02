@@ -12,3 +12,20 @@
   .dark-color{
     color:black
   }
+
+  .example-loader {
+    height: 100vh !important;
+    width:  100vw !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+      > mat-progress-spinner {
+        position: relative;
+        top: calc(40% - 70px);
+        left: calc(40% - 70px);
+      }
+    }

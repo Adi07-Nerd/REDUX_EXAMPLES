@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { SecondChapterModule } from './second-chapter/second-chapter.module';
@@ -47,6 +48,7 @@ import { CustomRouterSerializer } from './store/router/router.serializer';
     MatInputModule,
     SecondChapterModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
     HttpClientInMemoryWebApiModule.forRoot(
     InMemoryDataService, {
     dataEncapsulation: false,

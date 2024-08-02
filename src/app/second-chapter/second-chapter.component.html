@@ -1,3 +1,4 @@
+<mat-spinner *ngIf="isPageLoading$ | async" value="50" class="example-loader" mode="indeterminate"></mat-spinner>
 <mat-toolbar color="primary">
     <mat-toolbar-row>
         <span [routerLink]="['/list']" class="example-header">Bookmarker</span>
