@@ -1,6 +1,7 @@
 import { isDevMode } from '@angular/core';
 import * as fromRouterStore from '@ngrx/router-store';
 import * as fromLoaderState from '../store/router/router.reducer'
+import * as fromBookmarkentity from '../store/bookmark-entity/bookmark-entity.reducer'
 
 import {
   ActionReducerMap,
@@ -12,13 +13,15 @@ import * as fromToolbar from 'src/app/store/toolbar/toolbar.reducer';
 export interface AppState {
   filter: fromToolbar.FilterState,
   router: fromRouterStore.RouterReducerState,
-  loader: fromLoaderState.LoaderState
+  loader: fromLoaderState.LoaderState,
+  [fromBookmarkentity.bookmarkEntitiesFeatureKey]:fromBookmarkentity.State
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
   filter: fromToolbar.toolbarReducer,
   router: fromRouterStore.routerReducer,
-  loader: fromLoaderState.pageNavigationStartReducer
+  loader: fromLoaderState.pageNavigationStartReducer,
+  [fromBookmarkentity.bookmarkEntitiesFeatureKey]:fromBookmarkentity.reducer
 };
 
 

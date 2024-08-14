@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { getFilterText } from '../store/toolbar/toolbar.selectors';
 import { AppState } from '../store/index';
 import { getAllBookmarks } from '../store/bookmark/bookmark.selector';
+import * as BookmarkEntitySelector from '../store/bookmark-entity/bookmark-entity.selector'
 
 @Component({
   selector: 'app-list',
@@ -24,7 +25,10 @@ export class ListComponent implements OnInit{
   public filterText$:Observable<string>;
   constructor(public readonly bookmarkService: BookmarkService,public readonly store$:Store<AppState>){ 
     //After usign store
-    this.allBookmarks$ = this.store$.select(getAllBookmarks);
+    // this.allBookmarks$ = this.store$.select(getAllBookmarks);
+
+    /** fetch all bookmark from Entity Management */
+    this.allBookmarks$ = this.store$.select(BookmarkEntitySelector.selectAll)
     this.todaysBookmarks$ = this.allBookmarks$.pipe(map((bookmarks:Bookmark[] | undefined) => bookmarks?.filter((bookmark:Bookmark) => isToday(bookmark.created))));
     this.yesterdaysBookmarks$ = this.allBookmarks$.pipe(map((bookmarks:Bookmark[] | undefined) => bookmarks?.filter((bookmark:Bookmark) => isYesterday(bookmark.created))));
     this.olderBookmarks$ = this.allBookmarks$.pipe(map((bookmarks:Bookmark[] | undefined) => bookmarks?.filter((bookmark:Bookmark) => !isToday(bookmark.created) && !isYesterday(bookmark.created))));
