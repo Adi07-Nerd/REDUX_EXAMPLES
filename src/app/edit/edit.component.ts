@@ -30,7 +30,7 @@ export class EditComponent implements OnDestroy{
   }
 
   onSubmit(){
-    this.store$.select(getEditBookmark).subscribe( (bookmark:Bookmark | undefined) => {
+    this.bookmarkUpdate$ = this.store$.select(getEditBookmark).subscribe( (bookmark:Bookmark | undefined) => {
       this.store$.dispatch(BookmarkActions.bookmarkSaveEditBookmark({bookmark:Object.assign({},bookmark,this.bookmarkForm.value)}));
     })
     // this.router.navigate(['/list']);

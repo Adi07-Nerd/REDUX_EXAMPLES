@@ -9,6 +9,7 @@ import { BookmarkState } from '../store/bookmark';
 import { BookmarkActions } from '../store/bookmark/bookmark.actions'
 import { AppState } from '../store/index';
 import * as routerSelector from '../store/router/router.selector'
+import * as bookmarkEntitySelector from '../store/bookmark-entity/bookmark-entity.selector'
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,9 @@ export class EditGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return this.store$.select(routerSelector.getQueryParams).pipe(
         first(),
-        switchMap((bookmarkId) => this.bookmarkService.getById(bookmarkId).pipe(
+        // since new updation wont be available at old bookmark state fetch data from BookmarkEntity (since code done in list guard)
+        // switchMap((bookmarkId) => this.bookmarkService.getById(bookmarkId).pipe(
+        switchMap((bookmarkId) => this.store$.select(bookmarkEntitySelector.getFilterEntityState).pipe(
           first(),
           map((bookmark:Bookmark) => this.store$.dispatch(BookmarkActions.bookmarkEditBookmarks({bookmark}))),
           switchMap(() => this.activateRoute()),

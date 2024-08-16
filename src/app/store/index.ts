@@ -14,7 +14,7 @@ export interface AppState {
   filter: fromToolbar.FilterState,
   router: fromRouterStore.RouterReducerState,
   loader: fromLoaderState.LoaderState,
-  [fromBookmarkentity.bookmarkEntitiesFeatureKey]:fromBookmarkentity.State
+  [fromBookmarkentity.bookmarkEntitiesFeatureKey]:fromBookmarkentity.BookmarkEntityState
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<AppState> = {

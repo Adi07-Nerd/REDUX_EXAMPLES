@@ -2,18 +2,23 @@ import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { EntityState,EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { BookmarkEntityActions }  from './bookmark-entity.actions';
 import { Bookmark } from 'src/app/shared/service/bookmark/bookmark.service';
+import { BookmarkEntity } from './bookmark-entity.model';
 
 export const bookmarkEntitiesFeatureKey = 'bookmarkEntities';
 
 
-export interface State extends EntityState<Bookmark> {
+export interface BookmarkEntityState extends EntityState<Bookmark> {
   loaded:boolean;
   // additional entities state properties
 }
 
-export const adapter: EntityAdapter<Bookmark> = createEntityAdapter<Bookmark>();
+//custom sort to sort the entity
+export const adapter: EntityAdapter<Bookmark> = createEntityAdapter<Bookmark>({
+  selectId: entity => entity.id,  //optional when there is an id property in the entity
+  sortComparer: (a:Bookmark,b:Bookmark) => b.id - a.id
+});
 
-export const initialState: State = adapter.getInitialState({
+export const initialState: BookmarkEntityState = adapter.getInitialState({
   loaded:false
   // additional entity state properties
 });
@@ -56,7 +61,7 @@ export const reducer = createReducer(
 
 export const bookmarkEntitiesFeature = createFeature({
   name: bookmarkEntitiesFeatureKey,
-  reducer
+  reducer,
 });
 
 export const {

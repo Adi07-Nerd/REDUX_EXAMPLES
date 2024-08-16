@@ -1,4 +1,4 @@
-<form [formGroup]="bookmarkForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="bookmarkForm">
     <mat-accordion class="edit-bookmark-container">
         <mat-expansion-panel [expanded]="true" hideToggle>
             <mat-expansion-panel-header>
@@ -19,7 +19,7 @@
             </mat-form-field>
 
             <mat-action-row>
-                <button mat-raised-button color="primary" [disabled]="!bookmarkForm.valid" type="submit"> Update Bookmark </button>
+                <button type="button" (click)="onSubmit()" mat-raised-button color="primary" [disabled]="!bookmarkForm.valid" type="submit"> Update Bookmark </button>
             </mat-action-row>
         </mat-expansion-panel>
     </mat-accordion>
